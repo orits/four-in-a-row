@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="fourinrowDB_or_davidModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="HistoryGames">
+          <Key>
+            <PropertyRef Name="GameId" />
+          </Key>
+          <Property Name="GameId" Type="int" Nullable="false" />
+          <Property Name="UserNameOne" Type="nvarchar(max)" />
+          <Property Name="UserNameTwo" Type="nvarchar(max)" />
+          <Property Name="StartingDateTime" Type="datetime" Nullable="false" />
+          <Property Name="WinUserName" Type="nvarchar(max)" />
+          <Property Name="LossUserName" Type="nvarchar(max)" />
+          <Property Name="UserNameOneScore" Type="int" Nullable="false" />
+          <Property Name="UserNameTwoScore" Type="int" Nullable="false" />
+          <Property Name="EndingDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LiveGames">
+          <Key>
+            <PropertyRef Name="GameId" />
+          </Key>
+          <Property Name="GameId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserNameOne" Type="nvarchar(max)" />
+          <Property Name="UserNameTwo" Type="nvarchar(max)" />
+          <Property Name="StartingDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="HashedPassword" Type="nvarchar(max)" />
+          <Property Name="EmojiIcon" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityContainer Name="fourinrowDB_or_davidModelStoreContainer">
+          <EntitySet Name="HistoryGames" EntityType="Self.HistoryGames" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LiveGames" EntityType="Self.LiveGames" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="fourinrowDB_or_davidModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="HistoryGame">
+          <Key>
+            <PropertyRef Name="GameId" />
+          </Key>
+          <Property Name="GameId" Type="Int32" Nullable="false" />
+          <Property Name="UserNameOne" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserNameTwo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartingDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WinUserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LossUserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserNameOneScore" Type="Int32" Nullable="false" />
+          <Property Name="UserNameTwoScore" Type="Int32" Nullable="false" />
+          <Property Name="EndingDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="LiveGame">
+          <Key>
+            <PropertyRef Name="GameId" />
+          </Key>
+          <Property Name="GameId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserNameOne" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserNameTwo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartingDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HashedPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmojiIcon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="FourInRowDB_Context" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="HistoryGames" EntityType="Self.HistoryGame" />
+          <EntitySet Name="LiveGames" EntityType="Self.LiveGame" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="fourinrowDB_or_davidModelStoreContainer" CdmEntityContainer="FourInRowDB_Context">
+          <EntitySetMapping Name="HistoryGames">
+            <EntityTypeMapping TypeName="fourinrowDB_or_davidModel.HistoryGame">
+              <MappingFragment StoreEntitySet="HistoryGames">
+                <ScalarProperty Name="GameId" ColumnName="GameId" />
+                <ScalarProperty Name="UserNameOne" ColumnName="UserNameOne" />
+                <ScalarProperty Name="UserNameTwo" ColumnName="UserNameTwo" />
+                <ScalarProperty Name="StartingDateTime" ColumnName="StartingDateTime" />
+                <ScalarProperty Name="WinUserName" ColumnName="WinUserName" />
+                <ScalarProperty Name="LossUserName" ColumnName="LossUserName" />
+                <ScalarProperty Name="UserNameOneScore" ColumnName="UserNameOneScore" />
+                <ScalarProperty Name="UserNameTwoScore" ColumnName="UserNameTwoScore" />
+                <ScalarProperty Name="EndingDateTime" ColumnName="EndingDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LiveGames">
+            <EntityTypeMapping TypeName="fourinrowDB_or_davidModel.LiveGame">
+              <MappingFragment StoreEntitySet="LiveGames">
+                <ScalarProperty Name="GameId" ColumnName="GameId" />
+                <ScalarProperty Name="UserNameOne" ColumnName="UserNameOne" />
+                <ScalarProperty Name="UserNameTwo" ColumnName="UserNameTwo" />
+                <ScalarProperty Name="StartingDateTime" ColumnName="StartingDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="fourinrowDB_or_davidModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="HashedPassword" ColumnName="HashedPassword" />
+                <ScalarProperty Name="EmojiIcon" ColumnName="EmojiIcon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
