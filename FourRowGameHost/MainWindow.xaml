@@ -1,0 +1,12 @@
+﻿<Window x:Class="FourRowGameHost.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FourRowGameHost"
+        mc:Ignorable="d"
+        Title="Four Row Game Host" Height="118" Width="342" ResizeMode="NoResize" Loaded="MainWindow_OnLoaded" Icon="host_icon.png">
+    <Grid>
+        <Label Name="ServiceLabel"></Label>
+    </Grid>
+</Window>
