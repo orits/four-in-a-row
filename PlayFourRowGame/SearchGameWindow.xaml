@@ -1,0 +1,44 @@
+﻿<Window x:Class="PlayFourRowGame.SearchGameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PlayFourRowGame"
+        mc:Ignorable="d"
+        Title="" Height="450" Width="950.132" ResizeMode="NoResize" Loaded="SearchGameWindow_OnLoaded">
+    <DockPanel>
+        <!--all games info-->
+        <Grid Name="MainPanel">
+            <Grid.Resources>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Margin" Value="5"/>
+                    <Setter Property="FontStyle" Value="Italic"/>
+                </Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="{x:Type Label}">
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Setter Property="Margin" Value="-5"/>
+                </Style>
+
+            </Grid.Resources>
+
+            <ListView Name="LbGames" Margin="20">
+                <ListView.View>
+                    <GridView >
+                        <GridViewColumn Header="Game Id" Width="70" DisplayMemberBinding="{Binding GameId}" />
+                        <GridViewColumn Header="User Name One" Width="110" DisplayMemberBinding="{Binding UserNameOne}" />
+                        <GridViewColumn Header="User Name Two" Width="110" DisplayMemberBinding="{Binding UserNameTwo}" />
+                        <GridViewColumn Header="Starting DateTime" Width="115" DisplayMemberBinding="{Binding StartingDateTime}" />
+                        <GridViewColumn Header="Winner User Name" Width="115" DisplayMemberBinding="{Binding WinUserName}" />
+                        <GridViewColumn Header="User Name One Score" Width="136" DisplayMemberBinding="{Binding UserNameOneScore}" />
+                        <GridViewColumn Header="User Name Two Score" Width="135" DisplayMemberBinding="{Binding UserNameTwoScore}" />
+                        <GridViewColumn Header="Ending DateTime" Width="110" DisplayMemberBinding="{Binding EndingDateTime}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </DockPanel>
+</Window>

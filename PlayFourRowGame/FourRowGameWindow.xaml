@@ -1,0 +1,197 @@
+﻿<Window x:Class="PlayFourRowGame.FourRowGameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PlayFourRowGame"
+        mc:Ignorable="d"
+        Title="GameBoard" Height="710" Width="1000" Loaded="Window_Loaded" Closing="FourRowGameWindow_OnClosing" ResizeMode="NoResize">
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.6*"/>
+            <RowDefinition Height="0.13*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="FontStyle" Value="Italic"/>
+            </Style>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
+            </Style>
+            <Style TargetType="{x:Type Ellipse}">
+                <Setter Property="Fill" Value="MidnightBlue"/>
+                <Setter Property="Height" Value="70"></Setter>
+                <Setter Property="Width" Value="70"></Setter>
+                <Setter Property="Stroke" Value="Black"></Setter>
+                <Setter Property="StrokeThickness" Value="4"></Setter>
+            </Style>
+            <Style TargetType="{x:Type Label}">
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="-5"/>
+            </Style>
+
+        </Grid.Resources>
+
+        <!--User One Info, left-->
+        <GroupBox Grid.Row="0" Grid.ColumnSpan="2" Margin="8">
+            <GroupBox.Header>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Name="TbUserNameOne" Text="User 1:" FontWeight="Bold"  FontSize="20"></TextBlock>
+                </StackPanel>
+            </GroupBox.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Name="UserOneImage" />
+                <TextBlock Grid.Column="1" Name="TbUserOneScore" Text="Score: 0" FontWeight="Bold" Margin="10"/>
+            </Grid>
+        </GroupBox>
+
+        <!--game details timer & turn info -->
+        <StackPanel Grid.Column ="2" Grid.ColumnSpan="2" VerticalAlignment="Center">
+            <TextBlock Name="TbGameTimer" Text="00:00" FontWeight="Bold" HorizontalAlignment="Center" Padding="0,0,0,20"/>
+            <TextBlock Name="TbTurn" Text="00:00" FontWeight="Bold" HorizontalAlignment="Center" />
+        </StackPanel>
+
+        <!--User Two Info, right-->
+        <GroupBox Grid.Column="4" Grid.ColumnSpan="2" Margin="8">
+            <GroupBox.Header>
+                <StackPanel>
+                    <TextBlock Name="TbUserNameTwo" Text="User 2:" FontWeight="Bold" FontSize="20"  HorizontalAlignment="Right"></TextBlock>
+                </StackPanel>
+            </GroupBox.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image  Name="UserTwoImage" />
+                <TextBlock Grid.Column="1" Name="TbUserTwoScore" Text="Score: 0" FontWeight="Bold" Margin="10"/>
+            </Grid>
+        </GroupBox>
+
+        <!--board arrow column -->
+        <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" ShowGridLines="True" Name="GridColumnArrow" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Name="ImageTriBlack0" Grid.Column="0" Source="TriangleBlacDown .png" Visibility="Hidden"/>
+            <Image Name="ImageTriBlack1" Grid.Column="1" Source="TriangleBlacDown .png" Visibility="Hidden"/>
+            <Image Name="ImageTriBlack2" Grid.Column="2" Source="TriangleBlacDown .png" Visibility="Hidden"/>
+            <Image Name="ImageTriBlack3" Grid.Column="3" Source="TriangleBlacDown .png" Visibility="Hidden"/>
+            <Image Name="ImageTriBlack4" Grid.Column="4" Source="TriangleBlacDown .png" Visibility="Hidden"/>
+            <Image Name="ImageTriBlack5" Grid.Column="5" Source="TriangleBlacDown .png" Visibility="Hidden"/>
+            <Image Name="ImageTriBlack6" Grid.Column="6" Source="TriangleBlacDown .png" Visibility="Hidden"/>
+        </Grid>
+
+        <!--board canvas-->
+        <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="2" Background="blue" Name="GridGameBoard">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Canvas Name="CanvasBlueGameBoard"  MouseLeftButtonUp="CanvasBlueGameBoard_OnMouseLeftButtonUp" >
+                <!--Row 0-->
+                <Ellipse Grid.Column="0" Grid.Row="0" Canvas.Left="14"  Canvas.Top="18" MouseEnter="EllipseColumn0_MouseEnter" MouseLeave="EllipseColumn0_MouseLeave" />
+                <Ellipse Grid.Column="1" Grid.Row="0"  Canvas.Left="113" Canvas.Top="18" MouseEnter="EllipseColumn1_MouseEnter" MouseLeave="EllipseColumn1_MouseLeave"/>
+                <Ellipse Grid.Column="2" Grid.Row="0"  Canvas.Left="205" Canvas.Top="18" MouseEnter="EllipseColumn2_MouseEnter" MouseLeave="EllipseColumn2_MouseLeave"/>
+                <Ellipse Grid.Column="3" Grid.Row="0"  Canvas.Left="297" Canvas.Top="18" MouseEnter="EllipseColumn3_MouseEnter" MouseLeave="EllipseColumn3_MouseLeave"/>
+                <Ellipse Grid.Column="4" Grid.Row="0"  Canvas.Left="391" Canvas.Top="18" MouseEnter="EllipseColumn4_MouseEnter" MouseLeave="EllipseColumn4_MouseLeave"/>
+                <Ellipse Grid.Column="5" Grid.Row="0"  Canvas.Left="487" Canvas.Top="18" MouseEnter="EllipseColumn5_MouseEnter" MouseLeave="EllipseColumn5_MouseLeave"/>
+                <Ellipse Grid.Column="6" Grid.Row="0"  Canvas.Left="579" Canvas.Top="18" MouseEnter="EllipseColumn6_MouseEnter" MouseLeave="EllipseColumn6_MouseLeave"/>
+
+                <!--Row 1-->
+                <Ellipse Grid.Column="0" Grid.Row="1"  Canvas.Left="14"  Canvas.Top="93" MouseEnter="EllipseColumn0_MouseEnter" MouseLeave="EllipseColumn0_MouseLeave"/>
+                <Ellipse Grid.Column="1" Grid.Row="1"  Canvas.Left="113" Canvas.Top="93" MouseEnter="EllipseColumn1_MouseEnter" MouseLeave="EllipseColumn1_MouseLeave"/>
+                <Ellipse Grid.Column="2" Grid.Row="1"  Canvas.Left="205" Canvas.Top="93" MouseEnter="EllipseColumn2_MouseEnter" MouseLeave="EllipseColumn2_MouseLeave"/>
+                <Ellipse Grid.Column="3" Grid.Row="1"  Canvas.Left="297" Canvas.Top="93" MouseEnter="EllipseColumn3_MouseEnter" MouseLeave="EllipseColumn3_MouseLeave"/>
+                <Ellipse Grid.Column="4" Grid.Row="1"  Canvas.Left="391" Canvas.Top="93" MouseEnter="EllipseColumn4_MouseEnter" MouseLeave="EllipseColumn4_MouseLeave"/>
+                <Ellipse Grid.Column="5" Grid.Row="1"  Canvas.Left="487" Canvas.Top="93" MouseEnter="EllipseColumn5_MouseEnter" MouseLeave="EllipseColumn5_MouseLeave"/>
+                <Ellipse Grid.Column="6" Grid.Row="1"  Canvas.Left="579" Canvas.Top="93" MouseEnter="EllipseColumn6_MouseEnter" MouseLeave="EllipseColumn6_MouseLeave"/>
+
+                <!--Row 2-->
+                <Ellipse Grid.Column="0" Grid.Row="2"  Canvas.Left="14" Canvas.Top="168" MouseEnter="EllipseColumn0_MouseEnter" MouseLeave="EllipseColumn0_MouseLeave"/>
+                <Ellipse Grid.Column="1" Grid.Row="2"  Canvas.Left="113" Canvas.Top="168" MouseEnter="EllipseColumn1_MouseEnter" MouseLeave="EllipseColumn1_MouseLeave"/>
+                <Ellipse Grid.Column="2" Grid.Row="2"  Canvas.Left="205" Canvas.Top="168" MouseEnter="EllipseColumn2_MouseEnter" MouseLeave="EllipseColumn2_MouseLeave"/>
+                <Ellipse Grid.Column="3" Grid.Row="2"  Canvas.Left="297" Canvas.Top="168" MouseEnter="EllipseColumn3_MouseEnter" MouseLeave="EllipseColumn3_MouseLeave"/>
+                <Ellipse Grid.Column="4" Grid.Row="2"  Canvas.Left="391" Canvas.Top="168" MouseEnter="EllipseColumn4_MouseEnter" MouseLeave="EllipseColumn4_MouseLeave"/>
+                <Ellipse Grid.Column="5" Grid.Row="2"  Canvas.Left="487" Canvas.Top="168" MouseEnter="EllipseColumn5_MouseEnter" MouseLeave="EllipseColumn5_MouseLeave"/>
+                <Ellipse Grid.Column="6" Grid.Row="2"  Canvas.Left="579" Canvas.Top="168" MouseEnter="EllipseColumn6_MouseEnter" MouseLeave="EllipseColumn6_MouseLeave"/>
+
+                <!--Row 3-->
+                <Ellipse Grid.Column="0" Grid.Row="3"  Canvas.Left="14"  Canvas.Top="243" MouseEnter="EllipseColumn0_MouseEnter" MouseLeave="EllipseColumn0_MouseLeave"/>
+                <Ellipse Grid.Column="1" Grid.Row="3"  Canvas.Left="113" Canvas.Top="243" MouseEnter="EllipseColumn1_MouseEnter" MouseLeave="EllipseColumn1_MouseLeave"/>
+                <Ellipse Grid.Column="2" Grid.Row="3"  Canvas.Left="205" Canvas.Top="243" MouseEnter="EllipseColumn2_MouseEnter" MouseLeave="EllipseColumn2_MouseLeave"/>
+                <Ellipse Grid.Column="3" Grid.Row="3"  Canvas.Left="297" Canvas.Top="243" MouseEnter="EllipseColumn3_MouseEnter" MouseLeave="EllipseColumn3_MouseLeave"/>
+                <Ellipse Grid.Column="4" Grid.Row="3"  Canvas.Left="391" Canvas.Top="243" MouseEnter="EllipseColumn4_MouseEnter" MouseLeave="EllipseColumn4_MouseLeave"/>
+                <Ellipse Grid.Column="5" Grid.Row="3"  Canvas.Left="487" Canvas.Top="243" MouseEnter="EllipseColumn5_MouseEnter" MouseLeave="EllipseColumn5_MouseLeave"/>
+                <Ellipse Grid.Column="6" Grid.Row="3"  Canvas.Left="579" Canvas.Top="243" MouseEnter="EllipseColumn6_MouseEnter" MouseLeave="EllipseColumn6_MouseLeave"/>
+
+                <!--Row 4-->
+                <Ellipse Grid.Column="0" Grid.Row="4"  Canvas.Left="14"  Canvas.Top="318" MouseEnter="EllipseColumn0_MouseEnter" MouseLeave="EllipseColumn0_MouseLeave"/>
+                <Ellipse Grid.Column="1" Grid.Row="4"  Canvas.Left="113" Canvas.Top="318" MouseEnter="EllipseColumn1_MouseEnter" MouseLeave="EllipseColumn1_MouseLeave"/>
+                <Ellipse Grid.Column="2" Grid.Row="4"  Canvas.Left="205" Canvas.Top="318" MouseEnter="EllipseColumn2_MouseEnter" MouseLeave="EllipseColumn2_MouseLeave"/>
+                <Ellipse Grid.Column="3" Grid.Row="4"  Canvas.Left="297" Canvas.Top="318" MouseEnter="EllipseColumn3_MouseEnter" MouseLeave="EllipseColumn3_MouseLeave"/>
+                <Ellipse Grid.Column="4" Grid.Row="4"  Canvas.Left="391" Canvas.Top="318" MouseEnter="EllipseColumn4_MouseEnter" MouseLeave="EllipseColumn4_MouseLeave"/>
+                <Ellipse Grid.Column="5" Grid.Row="4"  Canvas.Left="487" Canvas.Top="318" MouseEnter="EllipseColumn5_MouseEnter" MouseLeave="EllipseColumn5_MouseLeave"/>
+                <Ellipse Grid.Column="6" Grid.Row="4"  Canvas.Left="579" Canvas.Top="318" MouseEnter="EllipseColumn6_MouseEnter" MouseLeave="EllipseColumn6_MouseLeave"/>
+
+                <!--Row 5-->
+                <Ellipse Grid.Column="0" Grid.Row="5"  Canvas.Left="14"  Canvas.Top="396" MouseEnter="EllipseColumn0_MouseEnter" MouseLeave="EllipseColumn0_MouseLeave"/>
+                <Ellipse Grid.Column="1" Grid.Row="5"  Canvas.Left="113" Canvas.Top="396" MouseEnter="EllipseColumn1_MouseEnter" MouseLeave="EllipseColumn1_MouseLeave"/>
+                <Ellipse Grid.Column="2" Grid.Row="5"  Canvas.Left="205" Canvas.Top="396" MouseEnter="EllipseColumn2_MouseEnter" MouseLeave="EllipseColumn2_MouseLeave"/>
+                <Ellipse Grid.Column="3" Grid.Row="5"  Canvas.Left="297" Canvas.Top="396" MouseEnter="EllipseColumn3_MouseEnter" MouseLeave="EllipseColumn3_MouseLeave"/>
+                <Ellipse Grid.Column="4" Grid.Row="5"  Canvas.Left="391" Canvas.Top="396" MouseEnter="EllipseColumn4_MouseEnter" MouseLeave="EllipseColumn4_MouseLeave"/>
+                <Ellipse Grid.Column="5" Grid.Row="5"  Canvas.Left="487" Canvas.Top="396" MouseEnter="EllipseColumn5_MouseEnter" MouseLeave="EllipseColumn5_MouseLeave"/>
+                <Ellipse Grid.Column="6" Grid.Row="5"  Canvas.Left="579" Canvas.Top="396" MouseEnter="EllipseColumn6_MouseEnter" MouseLeave="EllipseColumn6_MouseLeave"/>
+            </Canvas>
+        </Grid>
+
+        <!--current ball/disk color-->
+        <Grid  Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.8*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Label Content="Current Player:" HorizontalAlignment="Left" Height="28" Margin="18"
+                   VerticalAlignment="Top" Width="121" HorizontalContentAlignment="Center" FontFamily="Comic Sans MS" FontSize="14"/>
+            <Ellipse Name="CurrentPlayer" Grid.Column="0" Grid.Row="1" Height="70" Canvas.Left="14"  Canvas.Top="18" Width="70"/>
+        </Grid>
+
+    </Grid>
+</Window>

@@ -1,0 +1,107 @@
+﻿<Window x:Class="PlayFourRowGame.WaitingRoomWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PlayFourRowGame"
+        mc:Ignorable="d"
+        Title="" Height="401.926" Width="491.425" 
+        Closing="WaitingRoomWindow_OnClosing" Loaded="Window_Loaded"
+        ResizeMode="NoResize" Icon="FR_icon.png">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.40*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
+            </Style>
+            <Style TargetType="{x:Type Label}">
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+            </Style>
+
+        </Grid.Resources>
+
+        <!--TextBlock Welocme -->
+        <TextBlock Name="TextBlockLabel" Text="Welcome To The Four Row Game Waiting Room!"
+                    FontSize="20" HorizontalAlignment="Center" 
+                   TextWrapping="Wrap" Foreground="Blue" Margin="20,10,60,0"/>
+
+        <!--Search GroupBox -->
+        <GroupBox Name="Search" Grid.Row="1" Margin="10,15,10,5" >
+            <GroupBox.Header>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontWeight="Bold" FontFamily="Comic Sans MS">Search Options:</TextBlock>
+                </StackPanel>
+            </GroupBox.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.10*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.20*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.10*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Name="AllRegistersUsersButton" Grid.Row="1" Grid.Column="1" Margin="9" 
+                        Click="AllRegistersUsersButton_OnClick" MouseDown="AllRegistersUsersButton_MouseDown" MouseEnter="AllRegistersUsersButton_MouseEnter">
+                    <TextBlock Text="All Registers Users" TextWrapping="Wrap" Padding="5"/>
+                </Button>
+                <Button Name="AllHistoryGameButton" Grid.Row="1" Grid.Column="3" Margin="9"
+                        Click="AllHistoryGamesButton_OnClick" MouseEnter="AllHistoryGameButton_MouseEnter" MouseLeave="AllHistoryGameButton_MouseLeave">
+                    <TextBlock Text="All History Games" TextWrapping="Wrap"/>
+                </Button>
+                <Button Name="AllLiveGamesButton" Grid.Row="2" Grid.Column="1" Margin="9"
+                        Click="AllLiveGamesButton_OnClick" MouseEnter="AllLiveGamesButton_MouseEnter" MouseLeave="AllLiveGamesButton_MouseLeave">
+                    <TextBlock Text="All Live Games" TextWrapping="Wrap" />
+                </Button>
+                <Button Name="TwoPlayersGamesButton" Grid.Row="2" Grid.Column="3" Margin="9"
+                        Click="TwoPlayersGamesButton_OnClick" MouseEnter="TwoPlayersGamesButton_MouseEnter" MouseLeave="TwoPlayersGamesButton_MouseLeave">
+                    <TextBlock Text="Two Players Games" TextWrapping="Wrap" Margin="0"/>
+                </Button>
+                <Button Name="SummeryOfUserGamesButton" Grid.Row="3" Grid.Column="1" Margin="9" IsEnabled="False"
+                        Click="SummeryOfUserGamesButton_OnClick" MouseEnter="SummeryOfUserGamesButton_MouseEnter" MouseLeave="SummeryOfUserGamesButton_MouseLeave">
+                    <TextBlock Text="Summery Of User Games" TextWrapping="Wrap" Padding="5"/>
+                </Button>
+                <Button Name="Top10PlayersButton" Grid.Row="3" Grid.Column="3" Margin="9"
+                        Click="Top10PlayersButton_OnClick" MouseEnter="Top10PlayersButton_MouseEnter" MouseLeave="Top10PlayersButton_MouseLeave">
+                    <TextBlock Text="Top 10 Players" TextWrapping="Wrap"/>
+                </Button>
+            </Grid>
+        </GroupBox>
+        
+
+        <StackPanel Grid.Column="2" Grid.RowSpan="3">
+            <GroupBox Name="LiveWaitingUsers" Height="315" Margin="5">
+                <GroupBox.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontWeight="Bold" FontFamily="Comic Sans MS">Waiting Users:</TextBlock>
+                    </StackPanel>
+                </GroupBox.Header>
+                <ListBox Margin="0,6,0,0" Name="LbWaitingUsers" SelectionMode="Single" SelectionChanged="LbWaitingUsers_SelectionChanged" />
+            </GroupBox>
+        </StackPanel>
+        <Button Name="InviteUserToPlayButton" Grid.Row="2" Grid.Column="1" Margin="10"
+                Click="InviteUserToPlayButton_OnClick" MouseEnter="InviteUserToPlayButton_MouseEnter" MouseLeave="InviteUserToPlayButton_MouseLeave">
+            <TextBlock Text="Invite"/>
+        </Button>
+        <Button Name="ExitButton" Grid.Row="2" Margin="90,10,90,10" FontWeight="Bold" FontSize="15"
+                Click="ExitButton_OnClick" MouseEnter="ExitButton_MouseEnter" MouseLeave="ExitButton_MouseLeave">
+            <TextBlock Text="Exit!"/>
+        </Button>
+    </Grid>
+</Window>

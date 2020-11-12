@@ -1,0 +1,53 @@
+﻿<Window x:Class="PlayFourRowGame.SearchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PlayFourRowGame"
+        mc:Ignorable="d"
+        Title="All Register Users" Height="450" Width="682.982" ResizeMode="NoResize" Loaded="Window_Loaded">
+    <DockPanel>
+        <!--menu top-->
+        <Menu DockPanel.Dock="Top" Name="DockPanel">
+            <MenuItem Header="_Sort By:">
+                <MenuItem Name="SortByUserNameMenu" Header="_User Name" Click="SortByUserNameMenu_OnClick"/>
+                <MenuItem Name="SortByNumberOfGamesMenu" Header="_Number Of Games" Click="SortByNumberOfGamesMenu_OnClick" />
+                <MenuItem Name="SortByNumberOfVictoryMenu" Header="_Number Of Victory" Click="SortByNumberOfVictoryMenu_OnClick" />
+                <MenuItem Name="SortByNumberOfLossesMenu" Header="_Number Of Losses" Click="SortByNumberOfLossesMenu_OnClick" />
+                <MenuItem Name="SortByNumberOfPointsMenu" Header="_Number Of Points" Click="SortByNumberOfPointsMenu_OnClick" />
+            </MenuItem>
+        </Menu>
+
+
+        <!--LowerPanel-->
+        <Grid Name="LowerPanel" >
+            <Grid.Resources>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Margin" Value="5"/>
+                    <Setter Property="FontStyle" Value="Italic"/>
+                </Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="{x:Type Label}">
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Setter Property="Margin" Value="-5"/>
+                </Style>
+
+            </Grid.Resources>
+            <!--list view binding-->
+            <ListView Name="LbRegisterUsers" Margin="20">
+                <ListView.View>
+                    <GridView >
+                        <GridViewColumn Header="User Name" Width="104" DisplayMemberBinding="{Binding UserName}" />
+                        <GridViewColumn Header="Number Of Games" Width="132" DisplayMemberBinding="{Binding NumberOfGames}" />
+                        <GridViewColumn Header="Number Of Victory" Width="132" DisplayMemberBinding="{Binding NumberOfVictory}" />
+                        <GridViewColumn Header="Number Of Losses" Width="132" DisplayMemberBinding="{Binding NumberOfLosses}" />
+                        <GridViewColumn Header="Number Of Points" Width="132" DisplayMemberBinding="{Binding NumberOfPoints}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </DockPanel>
+</Window>

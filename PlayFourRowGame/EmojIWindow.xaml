@@ -1,0 +1,88 @@
+﻿<Window x:Class="PlayFourRowGame.EmojIWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PlayFourRowGame"
+        mc:Ignorable="d"
+        Title="Emoji Select" Height="450" Width="800" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="15" />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="15" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0" >
+            <Border Name="Border00" BorderThickness="0" BorderBrush="Black" >
+                <Image Stretch="Fill" Source="emoji/emoji-1.png" MouseLeftButtonUp="Image_MouseLeftButtonUp0" />
+            </Border>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Border Name="Border01" BorderThickness="0" BorderBrush="Black" >
+                <Image Stretch="Fill" Source="emoji/emoji-2.png" MouseLeftButtonUp="Image_MouseLeftButtonUp1" />
+            </Border>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="2">
+            <Border Name="Border02" BorderThickness="0" BorderBrush="Black" >
+                <Image Stretch="Fill" Source="emoji/emoji-3.png" MouseLeftButtonUp="Image_MouseLeftButtonUp2" />
+            </Border>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="3">
+            <Border Name="Border03" BorderThickness="0" BorderBrush="Black" >
+                <Image Stretch="Fill" Source="emoji/emoji-4.png" MouseLeftButtonUp="Image_MouseLeftButtonUp3" />
+            </Border>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Border Name="Border10" BorderThickness="0" BorderBrush="Black" >
+                <Image Stretch="Fill" Source="emoji/emoji-5.png" MouseLeftButtonUp="Image_MouseLeftButtonUp4" />
+            </Border>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Border Name="Border11" BorderThickness="0" BorderBrush="Black" >
+                <Image Stretch="Fill" Source="emoji/emoji-6.png" MouseLeftButtonUp="Image_MouseLeftButtonUp5" />
+            </Border>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="2">
+            <Border Name="Border12" BorderThickness="0" BorderBrush="Black" >
+                <Image Stretch="Fill" Source="emoji/emoji-7.png" MouseLeftButtonUp="Image_MouseLeftButtonUp6" />
+            </Border>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="3">
+            <Border Name="Border13" BorderThickness="0" BorderBrush="Black" >
+                <Image Stretch="Fill" Source="emoji/emoji-8.png" MouseLeftButtonUp="Image_MouseLeftButtonUp7" />
+            </Border>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="0">
+            <Border Name="Border20" BorderThickness="0" BorderBrush="Black" >
+                <Image Stretch="Fill" Source="emoji/emoji-9.png" MouseLeftButtonUp="Image_MouseLeftButtonUp8" />
+            </Border>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Border Name="Border21" BorderThickness="0" BorderBrush="Black" >
+                <Image Stretch="Fill" Source="emoji/emoji-10.png" MouseLeftButtonUp="Image_MouseLeftButtonUp9" />
+            </Border>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="2">
+            <Border Name="Border22" BorderThickness="0" BorderBrush="Black" >
+                <Image Stretch="Fill" Source="emoji/emoji-11.png" MouseLeftButtonUp="Image_MouseLeftButtonUp10" />
+            </Border>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="3">
+            <Border Name="Border23" BorderThickness="0" BorderBrush="Black" >
+                <Image Stretch="Fill" Source="emoji/emoji-12.png" MouseLeftButtonUp="Image_MouseLeftButtonUp11" />
+            </Border>
+        </Grid>
+        <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Name="SelectEmojiButton" Content="Select" Margin="70,10,70,10" 
+                Click="SelectEmojiButton_OnClick"/>
+    </Grid>
+</Window>
